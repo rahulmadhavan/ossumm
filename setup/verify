@@ -1,0 +1,31 @@
+#!/bin/bash
+
+apps=(git python-dev gcc make python-pip libxml2-dev libxslt1-dev zlib1g-dev)
+
+for f in "${apps[@]}"
+do
+        app=$f
+
+        installed=`dpkg -l | grep -w " $f " | wc -l`
+        if [ "$installed" == "1" ]; then
+                 echo "$f installed" 
+        else
+                 echo "$f not installed"  
+        fi;
+
+done
+
+apps=(Flask greenlet beautifulsoup4 lxml gevent httplib2)
+
+for f in "${apps[@]}"
+do
+        app=$f
+
+        installed=`2>/dev/null pip freeze | grep -w "$f" | wc -l`
+        if [ "$installed" == "1" ]; then
+                 echo "$f installed" 
+        else
+                 echo "$f not installed"  
+        fi;
+
+done

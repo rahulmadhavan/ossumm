@@ -1,0 +1,11 @@
+yes y | sudo pip uninstall gevent
+yes y | sudo pip uninstall lxml
+yes y | sudo pip uninstall beautifulsoup4
+yes y | sudo pip uninstall Flask
+yes y | sudo pip uninstall greenbelt
+sudo apt-get -y purge libxml2-dev libxslt-dev zlib1g-dev
+sudo apt-get -y purge python-pip
+sudo apt-get -y purge make
+sudo apt-get -y purge gcc
+sudo apt-get -y purge python-dev
+sudo apt-get -y purge git
