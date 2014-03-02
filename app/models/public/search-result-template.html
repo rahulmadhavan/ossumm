@@ -8,11 +8,30 @@
 <script src="js/jquery.lazyload.min.js" type="text/javascript"></script>
 <script src="js/masonry.js" type="text/javascript"></script>
 <script src="js/main.js"></script>
+
 </head>
 
 <body onload="mason()">
 
-<form action="" method="get">
+<script type="text/javascript">
+function pressed(e){
+    // Has the enter key been pressed?
+    if ( (window.event ? event.keyCode : e.which) == 13) {
+        // If it has been so, manually submit the <form>
+        submitForm()
+    }
+}
+function submitForm(){
+    var form_url = $("#main_form").attr("action");
+    var search_text = $("#search_text").val();
+    $("#main_form").attr("action",form_url.concat(search_text));
+    $("#search_text").val(null);
+    $("#main_form").attr("search",null);
+    $("#main_form").submit()
+}
+</script>
+
+<form id="main_form"action="http://127.0.0.1:5000/gen/" method="post"  >
 
 <!-- Page Container Starts Here -->
 <div class="fLeft fullStretch resultContainer">
@@ -27,8 +46,8 @@
         
         	<!-- Search Text Filed Container Starts Here -->
             <div class="fLeft search">
-            <input class="fLeft" name="search" type="text" placeholder="Search Your Moodbaord" />
-            <input name="Search" type="submit" class="fLeft" value="Search" />
+            <input id="search_text"class="fLeft" name="search" type="text" placeholder="Search Your Moodbaord" onkeydown="pressed(event)"/>
+            <input name="Search" type="submit" class="fLeft" onclick="submitForm()"/>
             </div>
             <!-- Search Text Filed Container Starts Here -->
             

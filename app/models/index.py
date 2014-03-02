@@ -19,7 +19,7 @@ def js(filename):
    return send_from_directory("/Users/rahulm/Documents/Developer/Projects/ossumm/app/models/public/js",filename)
 
 
-@app.route("/gen/<search>")
+@app.route("/gen/<search>", methods=['GET', 'POST'] )
 def gen(search):
     images = ImageGenerator().generate(search)
     simages=[]
@@ -27,7 +27,7 @@ def gen(search):
         simages.append(unicode(image.get_html(),"utf8"))
     return render_template('search-result-template.html',images = simages)
 
-@app.route("/gens/<search>")
+@app.route("/gens/<search>", methods=['GET', 'POST'])
 def gens(search):
     images = ImageGenerator().generate(search)
     simages=[]
